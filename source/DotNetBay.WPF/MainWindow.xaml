@@ -1,0 +1,35 @@
+﻿<Window x:Class="DotNetBay.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotNetBay.WPF"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="944.118">
+    <StackPanel Margin="0,0,-6.4,0">
+        <Button Name="NewAuction" HorizontalAlignment="Left" Margin="8,8,8,8">New Auction</Button>
+        <DataGrid x:Name="AuctionsDataGrid" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True" Margin="8,0,8,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                <DataGridTextColumn Header="Start Price" Binding="{Binding StartPrice, StringFormat=c}" />
+                <DataGridTextColumn Header="Current Price" Binding="{Binding CurrentPrice, StringFormat=c}" />
+                <DataGridTextColumn Header="Bids" Binding="{Binding Bids}" />
+                <DataGridTextColumn Header="Starts" Binding="{Binding StartDateTimeUtc}" />
+                <DataGridTextColumn Header="Ends" Binding="{Binding EndDateTimeUtc}" />
+                <DataGridTextColumn Header="Seller" Binding="{Binding Seller.DisplayName}" />
+                <DataGridTextColumn Header="Current Winner" />
+                <DataGridTextColumn Header="Closed" Binding="{Binding CloseDateTimeUtc}" />
+                <DataGridTextColumn Header="Winner" Binding="{Binding Winner.DisplayName}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Place"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>
