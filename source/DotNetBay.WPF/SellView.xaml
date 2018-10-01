@@ -32,9 +32,10 @@
             <TextBox Grid.Column="1" Grid.Row="2"/>
             <DatePickerTextBox Grid.Column="1" Grid.Row="3"/>
             <DatePickerTextBox Grid.Column="1" Grid.Row="4"/>
-            <TextBox Grid.Column="1" Grid.Row="5"/>
-            <Button Grid.Column="1" Grid.Row="5"/>
+            <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="True">
+                <Button DockPanel.Dock="Right" Margin="8,0" Content="..." HorizontalAlignment="Right" Width="30"/>
+                <TextBox/>
+            </DockPanel>
         </Grid>
     </StackPanel>
-
 </Window>
