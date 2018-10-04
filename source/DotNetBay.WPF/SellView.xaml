@@ -1,0 +1,41 @@
+﻿<Window x:Class="DotNetBay.WPF.SellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotNetBay.WPF"
+        mc:Ignorable="d"
+        Title="SellView" Height="450" Width="800">
+    <StackPanel>
+        <Label FontSize="24">Add New Auction</Label>
+        <Grid Height="Auto" Width="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Title:"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Description:"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Start price:"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Start:"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="End:"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Image:"/>
+            <TextBox Grid.Column="1" Grid.Row="0"/>
+            <TextBox MinLines="5" Grid.Column="1" Grid.Row="1"/>
+            <TextBox Grid.Column="1" Grid.Row="2"/>
+            <DatePickerTextBox Grid.Column="1" Grid.Row="3"/>
+            <DatePickerTextBox Grid.Column="1" Grid.Row="4"/>
+            <DockPanel Grid.Column="1" Grid.Row="5" LastChildFill="True">
+                <Button DockPanel.Dock="Right" Margin="8,0" Content="..." HorizontalAlignment="Right" Width="30"/>
+                <TextBox/>
+            </DockPanel>
+        </Grid>
+    </StackPanel>
+</Window>
