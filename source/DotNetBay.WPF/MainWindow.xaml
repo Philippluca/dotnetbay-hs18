@@ -7,11 +7,24 @@
         d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="944.118">
+    <Window.Resources>
+        <local:BooleanToStatusConverter x:Key="BooleanToStatusConverter"/>
+    </Window.Resources>
     <StackPanel Margin="0,0,-6.4,0">
         <Button Name="NewAuction" HorizontalAlignment="Left" Margin="8,8,8,8">New Auction</Button>
         <DataGrid x:Name="AuctionsDataGrid" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True" Margin="8,0,8,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                <DataGridTemplateColumn Header="Auction">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" ></TextBlock>
+                                <Image Source="{Binding Image}" MaxHeight="100" MaxWidth="120"></Image>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--TODO: Use Valueconverter-->
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
                 <DataGridTextColumn Header="Start Price" Binding="{Binding StartPrice, StringFormat=c}" />
                 <DataGridTextColumn Header="Current Price" Binding="{Binding CurrentPrice, StringFormat=c}" />
