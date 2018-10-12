@@ -35,5 +35,17 @@ namespace DotNetBay.WPF.View
             this.auctions = new ObservableCollection<Auction>(this.auctionService.GetAll());
             DataContext = this;
         }
+
+        private void NewAuction_Click(object sender, RoutedEventArgs e)
+        {
+            var sellView = new SellView();
+            sellView.ShowDialog();
+        }
+
+        private void NewBid_Click(object sender, RoutedEventArgs e)
+        {
+            var bidView = new BidView();
+            bidView.Show();
+        }
     }
 }

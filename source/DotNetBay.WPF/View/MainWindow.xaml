@@ -13,7 +13,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
     <StackPanel Margin="0,0,-6.4,0">
-        <Button Name="NewAuction" HorizontalAlignment="Left" Margin="8,8,8,8">New Auction</Button>
+        <Button Name="NewAuction" HorizontalAlignment="Left" Margin="8,8,8,8" Click="NewAuction_Click">New Auction</Button>
         <DataGrid x:Name="AuctionsDataGrid" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True" Margin="8,0,8,0">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Auction">
@@ -41,7 +41,7 @@
                 <DataGridTemplateColumn Header="Place Bid">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Background="Green" Visibility="{Binding IsRunning,
+                            <Button Name="NewBid" Click="NewBid_Click" Background="Green" Visibility="{Binding IsRunning,
                                                        Converter={StaticResource BooleanToVisibilityConverter}}">Place</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
