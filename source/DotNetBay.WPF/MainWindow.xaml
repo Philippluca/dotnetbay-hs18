@@ -7,12 +7,27 @@
         d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="944.118">
+    <Window.Resources>
+        <local:BooleanToStatusConverter x:Key="BooleanToStatusConverter"/>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <StackPanel Margin="0,0,-6.4,0">
         <Button Name="NewAuction" HorizontalAlignment="Left" Margin="8,8,8,8">New Auction</Button>
         <DataGrid x:Name="AuctionsDataGrid" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True" Margin="8,0,8,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                <DataGridTemplateColumn Header="Auction">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" ></TextBlock>
+                                <Image Source="{Binding Image}" MaxHeight="100" MaxWidth="120"></Image>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--TODO: Use Valueconverter-->
+                <DataGridTextColumn Header="Status" Binding="{Binding IsRunning,
+                                                       Converter={StaticResource BooleanToStatusConverter}}" />
                 <DataGridTextColumn Header="Start Price" Binding="{Binding StartPrice, StringFormat=c}" />
                 <DataGridTextColumn Header="Current Price" Binding="{Binding CurrentPrice, StringFormat=c}" />
                 <DataGridTextColumn Header="Bids" Binding="{Binding Bids}" />
@@ -22,10 +37,11 @@
                 <DataGridTextColumn Header="Current Winner" />
                 <DataGridTextColumn Header="Closed" Binding="{Binding CloseDateTimeUtc}" />
                 <DataGridTextColumn Header="Winner" Binding="{Binding Winner.DisplayName}" />
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Place Bid">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Place"/>
+                            <Button Background="Green" Visibility="{Binding IsRunning,
+                                                       Converter={StaticResource BooleanToVisibilityConverter}}">Place</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

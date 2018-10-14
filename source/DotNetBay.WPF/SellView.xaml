@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:DotNetBay.WPF"
         mc:Ignorable="d"
         Title="SellView" Height="450" Width="800">
-    <StackPanel>
-        <Label FontSize="24">Add New Auction</Label>
+    <DockPanel>
+        <Label FontSize="24" DockPanel.Dock="Top">Add New Auction</Label>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="8" Width="85" IsDefault="True">Add Auction</Button>
+            <Button Margin="8" Width="85" IsCancel="True">Cancel</Button>
+        </StackPanel>
         <Grid Height="Auto" Width="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -18,8 +22,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Title:"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Description:"/>
@@ -37,5 +41,5 @@
                 <TextBox/>
             </DockPanel>
         </Grid>
-    </StackPanel>
+    </DockPanel>
 </Window>
