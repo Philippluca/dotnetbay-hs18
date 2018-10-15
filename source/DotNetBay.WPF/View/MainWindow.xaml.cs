@@ -1,5 +1,6 @@
 ﻿using DotNetBay.Core;
 using DotNetBay.Data.Entity;
+using DotNetBay.WPF.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,16 +25,12 @@ namespace DotNetBay.WPF.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private AuctionService auctionService;
-        ObservableCollection<Auction> auctions = new ObservableCollection<Auction>();
-        public ObservableCollection<Auction> Auctions { get => auctions; }
+
 
         public MainWindow()
         {
             var app = (App) App.Current;
-            this.auctionService = new AuctionService(app.MainRepository, new SimpleMemberService(app.MainRepository));
-            this.auctions = new ObservableCollection<Auction>(this.auctionService.GetAll());
-            DataContext = this;
+            DataContext = new MainViewModel(app.MainRepository);
         }
 
         private void NewAuction_Click(object sender, RoutedEventArgs e)
