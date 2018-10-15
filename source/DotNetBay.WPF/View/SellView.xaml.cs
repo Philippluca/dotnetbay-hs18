@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace DotNetBay.WPF
+namespace DotNetBay.WPF.View
 {
     /// <summary>
-    /// Interaction logic for BidView.xaml
+    /// Interaction logic for SellView.xaml
     /// </summary>
-    public partial class BidView : Window
+    public partial class SellView : Window
     {
-        public BidView()
+        public SellView()
         {
             InitializeComponent();
         }
