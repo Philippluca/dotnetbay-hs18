@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DotNetBay.WPF"
+        xmlns:local="clr-namespace:DotNetBay.WPF.View"
+        xmlns:converter="clr-namespace:DotNetBay.WPF.Converter"
         d:DataContext="{d:DesignInstance Type=local:MainWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="944.118">
     <Window.Resources>
-        <local:BooleanToStatusConverter x:Key="BooleanToStatusConverter"/>
-        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converter:BooleanToStatusConverter x:Key="BooleanToStatusConverter"/>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
     <StackPanel Margin="0,0,-6.4,0">
         <Button Name="NewAuction" HorizontalAlignment="Left" Margin="8,8,8,8">New Auction</Button>

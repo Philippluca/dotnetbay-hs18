@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DotNetBay.WPF
+namespace DotNetBay.WPF.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -34,33 +34,6 @@ namespace DotNetBay.WPF
             this.auctionService = new AuctionService(app.MainRepository, new SimpleMemberService(app.MainRepository));
             this.auctions = new ObservableCollection<Auction>(this.auctionService.GetAll());
             DataContext = this;
-        }
-    }
-
-
-    public class BooleanToStatusConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (bool)value ? "Valid" : "Closed";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((string)value == "Valid");
-        }
-    }
-
-    public class BooleanToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (Boolean)value ? Visibility.Visible : Visibility.Hidden;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((Visibility)value==Visibility.Visible)? true: false;
         }
     }
 }
