@@ -1,25 +1,77 @@
-﻿using DotNetBay.Core;
-using DotNetBay.Data.Entity;
-using DotNetBay.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using DotNetBay.Core;
+using DotNetBay.Core.Execution;
+using DotNetBay.Data.Entity;
+using DotNetBay.WPF.View;
 
 namespace DotNetBay.WPF.ViewModel
 {
-    class MainViewModel: ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
-        private AuctionService auctionService;
-        ObservableCollection<Auction> auctions = new ObservableCollection<Auction>();
-        public ObservableCollection<Auction> Auctions { get => auctions; }
+        private readonly IAuctioneer auctioneer;
 
-        public MainViewModel(IMainRepository mainRepository)
+        private readonly IAuctionService auctionService;
+
+        private ObservableCollection<AuctionViewModel> auctions = new ObservableCollection<AuctionViewModel>();
+
+        public MainViewModel(IAuctioneer auctioneer, IAuctionService auctionService)
         {
-            this.auctionService = new AuctionService(mainRepository, new SimpleMemberService(mainRepository));
-            this.auctions = new ObservableCollection<Auction>(this.auctionService.GetAll());
+            this.auctioneer = auctioneer;
+            this.auctionService = auctionService;
+
+            this.AddNewAuctionCommand = new RelayCommand(this.AddNewAuctionAction);
+
+            // Register for Events
+            this.auctioneer.AuctionEnded += (sender, args) => { this.ApplyChanges(args.Auction); };
+            this.auctioneer.AuctionStarted += (sender, args) => { this.ApplyChanges(args.Auction); };
+            this.auctioneer.BidAccepted += (sender, args) => { this.ApplyChanges(args.Auction); };
+            this.auctioneer.BidDeclined += (sender, args) => { this.ApplyChanges(args.Auction); };
+
+            // Setup UI
+            var allAuctions = this.auctionService.GetAll();
+            foreach (var auction in allAuctions)
+            {
+                var auctionVm = new AuctionViewModel(auction);
+                this.auctions.Add(auctionVm);
+            }
+        }
+
+        public ObservableCollection<AuctionViewModel> Auctions
+        {
+            get
+            {
+                return this.auctions;
+            }
+        }
+
+        public ICommand AddNewAuctionCommand { get; private set; }
+
+        private void AddNewAuctionAction()
+        {
+            var sellView = new SellView();
+            sellView.ShowDialog(); // Blocking
+
+            // Find & add new auction
+            var allAuctions = this.auctionService.GetAll().ToList();
+            var newAuctions = allAuctions.Where(a => this.auctions.All(vm => vm.Auction != a));
+
+            foreach (var auction in newAuctions)
+            {
+                var auctionVm = new AuctionViewModel(auction);
+                this.auctions.Add(auctionVm);
+            }
+        }
+
+        private void ApplyChanges(Auction auction)
+        {
+            var auctionVm = this.auctions.FirstOrDefault(vm => vm.Auction == auction);
+
+            if (auctionVm != null)
+            {
+                auctionVm.Update(auction);
+            }
         }
     }
 }
