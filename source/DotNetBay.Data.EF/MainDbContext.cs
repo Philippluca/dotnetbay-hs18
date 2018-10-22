@@ -15,8 +15,10 @@ namespace DotNetBay.Data.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
 
+            modelBuilder.Entity<Auction>().HasRequired(a => a.Seller).WithMany(m => m.Auctions);
+
+            modelBuilder.Conventions.Add(new DateTime2Convention());
         }
 
 
