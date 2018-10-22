@@ -8,6 +8,10 @@ namespace DotNetBay.Data.EF
 {
     class MainDbContext : DbContext
     {
+        public MainDbContext(): base("DatabaseConnection")
+        {
+            
+        }
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<Bid> Bids { get; set; }
         public DbSet<Member> Members { get; set; }
