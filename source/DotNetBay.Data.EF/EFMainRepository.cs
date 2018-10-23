@@ -7,10 +7,10 @@ using System.Text;
 
 namespace DotNetBay.Data.EF
 {
-    class EFMainRepository : IMainRepository
+    public class EFMainRepository : IMainRepository
     {
         private MainDbContext context { get; set; }
-        EFMainRepository()
+        public EFMainRepository()
         {
             context = new MainDbContext();
         }
