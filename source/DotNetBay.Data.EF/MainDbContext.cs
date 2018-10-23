@@ -10,7 +10,8 @@ namespace DotNetBay.Data.EF
     {
         public MainDbContext(): base("DatabaseConnection")
         {
-            
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<Bid> Bids { get; set; }
