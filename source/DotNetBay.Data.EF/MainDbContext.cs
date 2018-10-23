@@ -22,7 +22,7 @@ namespace DotNetBay.Data.EF
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Auction>().HasRequired(a => a.Seller).WithMany(m => m.Auctions);
-
+            modelBuilder.Entity<Auction>().HasMany(a => a.Bids).WithRequired(b => b.Auction);
             modelBuilder.Conventions.Add(new DateTime2Convention());
         }
 

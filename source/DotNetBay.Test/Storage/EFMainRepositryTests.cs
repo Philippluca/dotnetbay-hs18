@@ -18,11 +18,15 @@ namespace DotNetBay.Test.Storage
 
     public class EFMainRepositoryFactory : IRepositoryFactory
     {
+        EFMainRepository instance;
         public void Dispose()
-        { }
+        {
+            instance.Database.Delete();
+        }
         public IMainRepository CreateMainRepository()
         {
-            return new EFMainRepository();
+            if(instance == null) instance = new EFMainRepository();
+            return instance;
         }
     }
 }

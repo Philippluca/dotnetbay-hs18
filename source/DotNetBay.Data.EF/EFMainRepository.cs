@@ -2,6 +2,7 @@
 using DotNetBay.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace DotNetBay.Data.EF
     public class EFMainRepository : IMainRepository
     {
         private MainDbContext context { get; set; }
+        public Database Database { get => context.Database; }
         public EFMainRepository()
         {
             context = new MainDbContext();
@@ -27,6 +29,10 @@ namespace DotNetBay.Data.EF
 
         public Member Add(Member member)
         {
+            if(member.Auctions.Any(a => a.Seller != member))
+            {
+                throw new Exception("Consistency");
+            }
             return context.Members.Add(member);
 
         }
