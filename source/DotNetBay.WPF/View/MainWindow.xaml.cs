@@ -1,22 +1,11 @@
-﻿using DotNetBay.Core;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using DotNetBay.Core;
+using DotNetBay.Core.Execution;
 using DotNetBay.Data.Entity;
 using DotNetBay.WPF.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DotNetBay.WPF.View
 {
@@ -25,24 +14,17 @@ namespace DotNetBay.WPF.View
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
         public MainWindow()
         {
-            var app = (App) App.Current;
-            DataContext = new MainViewModel(app.MainRepository);
-        }
+            var app = Application.Current as App;
 
-        private void NewAuction_Click(object sender, RoutedEventArgs e)
-        {
-            var sellView = new SellView();
-            sellView.ShowDialog();
-        }
+            InitializeComponent();
 
-        private void NewBid_Click(object sender, RoutedEventArgs e)
-        {
-            var bidView = new BidView();
-            bidView.Show();
+            var memberService = new SimpleMemberService(app.MainRepository);
+            var auctionService = new AuctionService(app.MainRepository, new SimpleMemberService(app.MainRepository));
+
+            this.DataContext = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
+
         }
     }
 }

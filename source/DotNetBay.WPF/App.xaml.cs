@@ -18,19 +18,14 @@ namespace DotNetBay.WPF
     /// </summary>
     public partial class App : Application
     {
-        private readonly IMainRepository mainRepository; 
-        private readonly IAuctionRunner auctionRunner;
-
-        public IMainRepository MainRepository
-        {
-            get => mainRepository;
-        }
+        public IMainRepository MainRepository { get; private set; }
+        public IAuctionRunner AuctionRunner { get; private set; }
 
         public App()
         {
-            mainRepository = new FileSystemMainRepository(".\\persitance");
-            auctionRunner = new AuctionRunner(mainRepository);
-            this.auctionRunner.Start();
+            MainRepository = new FileSystemMainRepository(".\\persitance");
+            AuctionRunner = new AuctionRunner(MainRepository);
+            this.AuctionRunner.Start();
             InitializeTestData();
         }
 

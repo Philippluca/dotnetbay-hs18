@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using DotNetBay.Core;
+using DotNetBay.Data.Entity;
+using DotNetBay.WPF.ViewModel;
+using Microsoft.Win32;
 
 namespace DotNetBay.WPF.View
 {
@@ -19,9 +15,18 @@ namespace DotNetBay.WPF.View
     /// </summary>
     public partial class SellView : Window
     {
+
         public SellView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+
+            var app = Application.Current as App;
+
+            var memberService = new SimpleMemberService(app.MainRepository);
+            var auctionService = new AuctionService(app.MainRepository, memberService);
+            this.DataContext = new SellViewModel(memberService, auctionService);
         }
     }
+
 }
