@@ -88,7 +88,7 @@
       <Name>DotNetBay.BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetBay.Data.EF\DotNetBay.Data.EF.csproj">
-      <Project>{8f730608-77ee-4dfd-88b9-2bc7a73754b5}</Project>
+      <Project>{3421c70b-2193-41b5-bc74-427177e0eb26}</Project>
       <Name>DotNetBay.Data.EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetBay.Data.Provider.FileStorage\DotNetBay.Data.Provider.FileStorage.csproj">

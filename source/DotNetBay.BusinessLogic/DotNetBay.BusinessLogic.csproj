@@ -64,6 +64,10 @@
     <Compile Include="Execution\IAuctionRunner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetBay.Data.EF\DotNetBay.Data.EF.csproj">
+      <Project>{3421c70b-2193-41b5-bc74-427177e0eb26}</Project>
+      <Name>DotNetBay.Data.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNetBay.Interfaces\DotNetBay.Interfaces.csproj">
       <Project>{17745E6C-337C-44BD-9C50-5F1D45CEADA5}</Project>
       <Name>DotNetBay.Interfaces</Name>
