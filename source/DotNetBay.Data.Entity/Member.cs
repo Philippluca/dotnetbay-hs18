@@ -16,6 +16,8 @@ namespace DotNetBay.Data.Entity
 
         public string DisplayName { get; set; }
 
+        public string Location { get; set; }
+
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", Justification = "Keep it as is for compatibility reasons")]
         public string EMail { get; set; }
 

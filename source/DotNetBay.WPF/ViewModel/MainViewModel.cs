@@ -30,7 +30,7 @@ namespace DotNetBay.WPF.ViewModel
             this.auctioneer.BidDeclined += (sender, args) => { this.ApplyChanges(args.Auction); };
 
             // Setup UI
-            var allAuctions = this.auctionService.GetAll();
+            var allAuctions = this.auctionService.GetAll().ToList();
             foreach (var auction in allAuctions)
             {
                 var auctionVm = new AuctionViewModel(auction);

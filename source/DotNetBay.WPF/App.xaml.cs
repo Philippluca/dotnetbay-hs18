@@ -1,5 +1,6 @@
 ﻿using DotNetBay.Core;
 using DotNetBay.Core.Execution;
+using DotNetBay.Data.EF;
 using DotNetBay.Data.Entity;
 using DotNetBay.Data.Provider.FileStorage;
 using DotNetBay.Interfaces;
@@ -23,7 +24,7 @@ namespace DotNetBay.WPF
 
         public App()
         {
-            MainRepository = new FileSystemMainRepository(".\\persitance");
+            MainRepository = new EFMainRepository();
             AuctionRunner = new AuctionRunner(MainRepository);
             this.AuctionRunner.Start();
             InitializeTestData();

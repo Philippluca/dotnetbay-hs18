@@ -51,11 +51,17 @@
     <Compile Include="DateTime2Convention.cs" />
     <Compile Include="EFMainRepository.cs" />
     <Compile Include="MainDbContext.cs" />
+    <Compile Include="Migrations\201810301232014_Adding-Location.cs" />
+    <Compile Include="Migrations\201810301232014_Adding-Location.Designer.cs">
+      <DependentUpon>201810301232014_Adding-Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +73,11 @@
       <Project>{17745e6c-337c-44bd-9c50-5f1d45ceada5}</Project>
       <Name>DotNetBay.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810301232014_Adding-Location.resx">
+      <DependentUpon>201810301232014_Adding-Location.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
