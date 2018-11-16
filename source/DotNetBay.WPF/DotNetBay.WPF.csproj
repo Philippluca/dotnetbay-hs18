@@ -35,7 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -126,6 +133,10 @@
     <ProjectReference Include="..\DotNetBay.BusinessLogic\DotNetBay.BusinessLogic.csproj">
       <Project>{9ef46b21-b552-4cc6-a4c0-e81091a4064b}</Project>
       <Name>DotNetBay.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetBay.Data.EF\DotNetBay.Data.EF.csproj">
+      <Project>{3421C70B-2193-41B5-BC74-427177E0EB26}</Project>
+      <Name>DotNetBay.Data.EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetBay.Data.Entity\DotNetBay.Data.Entity.csproj">
       <Project>{908d8739-3185-46eb-a03e-6b6c3849857c}</Project>
